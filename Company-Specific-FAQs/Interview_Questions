@@ -1,0 +1,97 @@
+
+## 📌 INTERVIEW QUESTIONS
+
+### 🛠️ 1. MOSFET & Device Physics Questions
+* [cite_start]**Operating Curves:** Draw and explain $I_D$-$V_{DS}$ and $I_D$-$V_{GS}$ curves, highlighting the Cut-off, Linear, and Saturation regions[cite: 162].
+* [cite_start]**Second-Order Effects:** Explain the physical cause and effect of Channel Length Modulation (CLM), DIBL (Drain-Induced Barrier Lowering), and Velocity Saturation on $I_D$[cite: 163, 164].
+* [cite_start]**Technology Scaling:** How does technology scaling lead to Short Channel Effects (SCE)[cite: 165]?
+* [cite_start]**Small-Signal & C-V Dynamics:** Derive the MOSFET small signal model and explain $C$-$V$ characteristics (Gate capacitance behavior)[cite: 166].
+* [cite_start]**Operating Modes & Architecture:** Why is a MOSFET preferred for VLSI[cite: 167]? [cite_start]Explain the difference between Enhancement and Depletion modes[cite: 167].
+
+---
+
+### 💻 2. CMOS & Logic Design Questions
+* [cite_start]**Inverter VTC & Sizing:** Draw the CMOS Inverter VTC (Voltage Transfer Characteristics) and explain why PMOS and NMOS require different sizing ($W/L$ ratio)[cite: 170].
+* [cite_start]**Gate-Level Realization:** Design NAND and XOR gates using only CMOS transistors; realize any basic gate using only MUX[cite: 171].
+* [cite_start]**Logic Families compared:** Compare Static CMOS vs. Pass Transistor Logic (PTL) in terms of power, speed, and voltage swing[cite: 172].
+* [cite_start]**Threshold Voltage Engineering:** How do you size NMOS and PMOS transistors to increase the threshold voltage[cite: 173]?
+* [cite_start]**Noise Margin Bounds:** What is Noise Margin and how do you determine it[cite: 174]? 
+* [cite_start]**Symmetric Gate Sizing:** Draw and size a two-input NAND gate considering $V_{th}$ and equal rise/fall times[cite: 175].
+* [cite_start]**Delay Optimization:** In a NAND gate, which NMOS input to place near the output for optimizing delay[cite: 176]? 
+
+---
+
+### ⏱️ 3. Static Timing Analysis (STA)
+* [cite_start]**Timing Constraints:** Define Setup and Hold times, their equations, and explain how to fix violations[cite: 178].
+* [cite_start]**Clock Degradation Metrics:** Analyze the effect of Clock Skew, Jitter, and Propagation Delay on the maximum clock frequency ($F_{max}$)[cite: 179].
+* [cite_start]**Circuit Timing Problem:** * *Problem Statement:* Consider the circuit diagram and the timing requirement as shown for the flip flop[cite: 180]. [cite_start]Two clock buffers are added at the clock pin and the output pin[cite: 181]. [cite_start]Also a combinational delay of $dly = 0.2\text{ns}$ is present in the input to the output path[cite: 182].
+    
+    ![STA Circuit Diagram](uploaded:image_742465.png-8799fdd6-9bfd-4521-a2d7-32b51f0c8679)
+    
+    * [cite_start]*Parameters:* * $T_{cq} = 1.5\text{ns}$ [cite: 186]
+        * [cite_start]$T_{su} = 1\text{ns}$ [cite: 186]
+        * [cite_start]$T_{h} = 2\text{ns}$ [cite: 186]
+        * [cite_start]Initial $dly = 0.2\text{ns}$ [cite: 182, 185]
+    * [cite_start]*Question:* Check for any violation in the circuit with the given timing requirements, and if there is any violation then what would be the updated value of $dly$[cite: 188]? [cite_start]Also is there any effect on $f_{maximum}$ due to added clock buffers[cite: 189]?
+
+#### 💡 Solution:
+1. [cite_start]**Hold Violation Verification:** $$T_{hold} \le T_{clock\_Q} + dly$$ [cite: 193]
+   [cite_start]$$2\text{ns} \le 1.5\text{ns} + 0.2\text{ns}$$ [cite: 194]
+   [cite_start]$$2\text{ns} \le 1.7\text{ns} \quad \mathbf{[FAIL]}$$ [cite: 195]
+   [cite_start]Since the condition fails, there is a **hold time violation** in the circuit[cite: 195].
+2. [cite_start]**Remediation & Correction:** To remove the hold violation, we must vary $dly$[cite: 196]:
+   [cite_start]$$dly \ge T_{hold} - T_{clock\_Q}$$ [cite: 198]
+   [cite_start]$$dly \ge 2\text{ns} - 1.5\text{ns}$$ [cite: 199]
+   [cite_start]$$dly \ge 0.5\text{ns}$$ [cite: 200]
+   [cite_start]The $dly$ parameter must be greater than or equal to **$0.5\text{ns}$** to completely avoid a hold violation in this circuit[cite: 200].
+3. [cite_start]**Buffer Frequency Impact:** The added clock buffer delays **do not affect** the $f_{maximum}$ of this path circuit[cite: 201].
+
+---
+
+### 🔢 4. Digital Electronics & FSM
+* [cite_start]**Memory Elements & Metastability:** Compare Latch vs. Flip-Flop (transparency vs. edge-triggering) and explain Metastability in synchronizers[cite: 203].
+* [cite_start]**Sequential Machine Architectures:** Contrast Mealy vs. Moore models; design a sequence detector or a synchronous counter for a specific sequence[cite: 204].
+* [cite_start]**Clock Divider Synthesis:** Design a "Divide by N" circuit (specifically for odd and even $N$)[cite: 205].
+
+---
+
+### ⚡ 5. Circuit Theory & Transients
+* [cite_start]**Intuitive Graphing:** Draw $V_{out}$ and current waveforms for RC/RL circuits under Step and Pulse inputs without using Laplace transforms[cite: 207, 208].
+* [cite_start]**Network Calculations:** Solve RC circuits, Node analysis, and RLC circuit based numericals[cite: 209].
+* [cite_start]**Two-Capacitor Systems:** Analyze 2-capacitor circuits (e.g., what happens when a charged capacitor is shorted to an uncharged one)[cite: 210].
+* [cite_start]**Network Theorems:** Solve for voltage/current in a complex circuit using Norton/Thevenin or Delta-Star conversion tools[cite: 211].
+
+---
+
+### 🎛️ 6. Op-Amps & Analog Design
+* [cite_start]**Feedback Systems & Rails:** Identify Positive vs. Negative feedback loops and explain why Op-amp output is limited to $V_{DD}$/$V_{SS}$[cite: 213, 214].
+* [cite_start]**Virtual Node Limits:** Explain the limitations of Virtual Ground and Virtual Short assumptions[cite: 215].
+* [cite_start]**Mathematical Applications:** Design an Op-Amp as a Summer, Integrator, or Differentiator and draw the corresponding capacitor waveforms[cite: 216].
+* [cite_start]**Single-Stage Amplifiers:** Calculate Gain, $R_{in}$, $R_{out}$ for Common Source (CS), Common Gate (CG), and Common Drain (CD) amplifiers[cite: 217, 218].
+
+---
+
+### 📈 7. Filters & Frequency Response
+* [cite_start]**Transient Filter Curves:** Draw and compare the Step, Pulse, and Impulse responses for LPF and HPF[cite: 220].
+* [cite_start]**Differentiation Spikes:** Explain why a High Pass Filter shows negative spikes when a square wave is applied[cite: 221].
+* [cite_start]**Stability & Loop Metrics:** Define Gain/Phase Margin and Gain Crossover Frequency; explain the Barkhausen Stability Criterion for oscillators[cite: 222].
+* [cite_start]**Active Filter Implementation:** Design an active LPF/HPF for a specific cutoff frequency using Op-Amps[cite: 223].
+
+---
+
+### 💻 8. Verilog & HDL
+* [cite_start]**Assignment Operators:** Explain the difference between Blocking (`=`) and Non-blocking (`<=`) assignments and when to use each to avoid Race Conditions[cite: 225].
+* [cite_start]**Synthesis Core Types:** Difference between `reg` and `wire` and their corresponding hardware synthesis properties[cite: 226].
+* [cite_start]**RTL Implementations:** Write Verilog code for a basic FSM, Shift Register, or Counter[cite: 227].
+
+---
+
+### 🧠 9. Computer Architecture
+* [cite_start]**Pipeline Execution Hazards:** Identify and resolve Data, Control, and Structural hazards in a pipeline[cite: 229].
+* [cite_start]**Memory Subsystem Layouts:** Calculate Cache Hit Ratio and average access time; explain the trade-offs in memory organization (**SRAM vs. DRAM**)[cite: 230].
+
+---
+
+### 🏗️ 10. Design Flow & DFT
+* [cite_start]**VLSI Lifecycle Deliverables:** List the stages of the VLSI design flow and the deliverables at each stage (Netlist, GDSII, etc.)[cite: 232].
+* [cite_start]**Hardware Manufacturing Test:** Explain Scan Chain design, Stuck-at faults, and BIST (Built-In Self Test) basics[cite: 233].
