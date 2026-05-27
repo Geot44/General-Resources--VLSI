@@ -40,7 +40,7 @@
 
 - Consider the circuit diagram and the timing requirement as shown for the flip flop. Two clock buffers are added at the clock pin and the output pin. Also a combination delay of dly = 0.2ns in the input to the output path.
 
-![STA Problem](https://raw.githubusercontent.com/github/explore/main/topics/verilog/verilog.png)
+![STA Problem](sta_problem.png)
 
 Check for any violation in the circuit with the given timing requirements, and if there is any violation then what would be the updated value of dly? Also is there any effect on fmaximum due to added clock buffers.
 
@@ -48,7 +48,7 @@ Check for any violation in the circuit with the given timing requirements, and i
 
 #### STA Problem Solution
 
-1. Let us check for the hold violation in the circuit. We know the constraint to be checked is,
+1. Let us check for the hold violation in the circuit. We know the constraint to be checked that is,
 
 ```text
 Thold_time <= Tclock_Q + delay
